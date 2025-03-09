@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-// Serve static files from the public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html at root
@@ -20,9 +19,26 @@ app.get('/', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// In-memory auction state (for demo purposes)
+// In-memory auction state
 let currentBid = 5.00; // initial bid in USDT
 let bidCount = 1;
+let timeRemaining = 30; // universal timer in seconds
+
+// Universal timer logic on the server
+const timerInterval = setInterval(() => {
+  if (timeRemaining <= 0) {
+    clearInterval(timerInterval);
+    io.emit('auctionEnded', { winner: "Last Bidder" }); // Optionally, include winner info
+  } else {
+    timeRemaining--;
+    io.emit('timerUpdate', { timeRemaining });
+  }
+}, 1000);
+
+// When a new bid is placed, add extra time (e.g., 5 seconds)
+function addExtraTime(seconds: number) {
+  timeRemaining += seconds;
+}
 
 const placeBidHandler: RequestHandler = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -32,12 +48,14 @@ const placeBidHandler: RequestHandler = async (req: Request, res: Response): Pro
       return;
     }
     
-    // Increment the bid by 0.10 USDT.
-    const increment = 0.10;
+    const increment = 0.10; // Fixed increment in USDT
     currentBid += increment;
     bidCount++;
 
-    // Broadcast new bid data to all connected clients.
+    // Add extra time when a bid is placed
+    addExtraTime(5);
+
+    // Broadcast new bid data and updated timer
     io.emit('newBid', { newBidPrice: currentBid, txHash, bidderWallet, bidCount });
     
     res.json({ success: true, newBidPrice: currentBid, txHash, bidCount });
