@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Launchbid - Two-Sided Penny Auction Platform</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#10B981',
+            accent: '#8B5CF6',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white px-8 py-4 border-b border-gray-100 flex justify-between items-center">
+    <div class="flex items-center">
+      <a href="index.html" class="text-2xl font-bold text-primary mr-2">Launchbid</a>
+      <div class="bg-blue-100 text-primary text-xs px-2 py-1 rounded-full">BETA</div>
+    </div>
+    <nav class="hidden md:flex space-x-6">
+      <a href="auctions.html" class="text-black opacity-70 hover:opacity-100">Auctions</a>
+      <a href="equity.html" class="text-black opacity-70 hover:opacity-100">Equity</a>
+      <a href="loans.html" class="text-black opacity-70 hover:opacity-100">Loans</a>
+      <a href="dashboard.html" class="text-black opacity-70 hover:opacity-100">Dashboard</a>
+    </nav>
+    <div class="flex items-center space-x-4">
+      <button class="px-4 py-2 bg-gray-100 rounded-full text-black font-medium">Sign In</button>
+      <button class="px-4 py-2 bg-primary rounded-full text-white font-medium">Sign Up</button>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="px-8 py-12 flex bg-white">
+    <div class="w-1/2 pr-12">
+      <h1 class="text-4xl font-bold leading-tight mb-4 text-black">Back innovative startups. <br>Win exclusive products.</h1>
+      <p class="text-black opacity-70 mb-8 leading-relaxed">Launchbid connects startups with early supporters through penny auctions, equity offerings, and microloans. Bid on exclusive products, invest in promising ventures, or provide loans to growing companies.</p>
+      <div class="flex space-x-4">
+        <a href="auctions.html" class="px-6 py-3 bg-primary rounded-full text-white font-medium bid-button transition duration-200">Explore Auctions</a>
+        <button class="px-6 py-3 border border-gray-200 rounded-full text-black font-medium transition duration-200 hover:bg-gray-50">How It Works</button>
+      </div>
+      <div class="mt-8 flex items-center">
+        <div class="flex -space-x-2">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="User" class="rounded-full border-2 border-white w-10 h-10" />
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="User" class="rounded-full border-2 border-white w-10 h-10" />
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="User" class="rounded-full border-2 border-white w-10 h-10" />
+        </div>
+        <div class="ml-4">
+          <div class="text-black font-medium">3,500+ backers</div>
+          <div class="text-black opacity-60 text-sm">joined this month</div>
+        </div>
+      </div>
+    </div>
+    <div class="w-1/2 relative">
+      <div class="absolute -top-6 -right-6 w-72 h-72 bg-blue-500 opacity-10 rounded-full"></div>
+      <div class="relative z-10 bg-white rounded-xl overflow-hidden shadow-lg p-6 border border-gray-100">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <span class="text-xs text-primary bg-blue-50 px-2 py-1 rounded-full">FEATURED AUCTION</span>
+            <h3 class="text-xl font-bold mt-2 text-black">Echo Smart Speaker Pro</h3>
+          </div>
+          <div class="pulse w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
+            <i class="material-icons text-white">mic</i>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1589003077984-894e133dabab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Echo Speaker" class="w-full h-40 object-cover rounded-lg mb-4" />
+        <div class="flex justify-between mb-4">
+          <div>
+            <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+            <div class="text-2xl font-bold text-black">$23.50</div>
+          </div>
+          <div>
+            <div class="text-black opacity-60 text-xs mb-1">Retail Value</div>
+            <div class="text-2xl font-bold text-black">$199.00</div>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="text-black opacity-60 text-xs mb-1">Time Left</div>
+          <div class="flex justify-between">
+            <div class="flex space-x-2">
+              <div class="bg-gray-100 rounded px-2 py-1 text-black font-medium">05</div>
+              <div class="bg-gray-100 rounded px-2 py-1 text-black font-medium">43</div>
+              <div class="bg-gray-100 rounded px-2 py-1 text-black font-medium">21</div>
+            </div>
+            <a href="auction-detail.html" class="bg-primary text-white px-4 py-1 rounded-full text-sm font-medium bid-button transition duration-200">Bid Now</a>
+          </div>
+        </div>
+        <div class="text-xs text-black opacity-60">Each bid costs $0.10 and increases price by $0.01</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="px-8 py-10 bg-gray-50">
+    <h2 class="text-2xl font-bold text-center text-black mb-12">Three Ways to Support Startups</h2>
+    <div class="flex space-x-6">
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex-1">
+        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mb-4">
+          <i class="material-icons text-primary">schedule</i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 text-black">Penny Auctions</h3>
+        <p class="text-black opacity-70 text-sm mb-4">Bid on exclusive early products with micropayments. Win items at a fraction of retail value.</p>
+        <div class="flex justify-between items-center">
+          <div class="text-xs font-medium text-primary">42 active auctions</div>
+          <i class="material-icons text-primary">arrow_forward</i>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex-1">
+        <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-4">
+          <i class="material-icons text-secondary">attach_money</i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 text-black">Microequity</h3>
+        <p class="text-black opacity-70 text-sm mb-4">Purchase small equity stakes in promising startups. Invest as little as $10 to own shares.</p>
+        <div class="flex justify-between items-center">
+          <div class="text-xs font-medium text-secondary">18 equity offerings</div>
+          <i class="material-icons text-secondary">arrow_forward</i>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 flex-1">
+        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mb-4">
+          <i class="material-icons text-accent">credit_card</i>
+        </div>
+        <h3 class="text-lg font-semibold mb-2 text-black">Microloans</h3>
+        <p class="text-black opacity-70 text-sm mb-4">Lend small amounts to startups and earn interest. Support growth without taking equity.</p>
+        <div class="flex justify-between items-center">
+          <div class="text-xs font-medium text-accent">24 loan opportunities</div>
+          <i class="material-icons text-accent">arrow_forward</i>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Stats Section -->
+  <section class="px-8 py-10 bg-white">
+    <div class="flex justify-between">
+      <div class="text-center">
+        <div class="text-3xl font-bold text-black">$2.4M</div>
+        <div class="text-black opacity-70 text-sm">Raised for Startups</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-black">12,400+</div>
+        <div class="text-black opacity-70 text-sm">Successful Bids</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-black">92%</div>
+        <div class="text-black opacity-70 text-sm">Satisfaction Rate</div>
+      </div>
+      <div class="text-center">
+        <div class="text-3xl font-bold text-black">324</div>
+        <div class="text-black opacity-70 text-sm">Startup Partners</div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Trending Auctions -->
+  <section class="px-8 py-10 bg-white">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-black">Trending Auctions</h2>
+      <a href="auctions.html" class="text-primary font-medium flex items-center">
+        View All
+        <i class="material-icons ml-1">arrow_forward</i>
+      </a>
+    </div>
+    <div class="grid grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="p-4 pb-0">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs text-primary bg-blue-50 px-2 py-1 rounded-full">TECH</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Smart Home Security Hub</h3>
+            </div>
+            <div class="bg-purple-100 text-accent text-xs px-2 py-1 rounded-full">92 bids</div>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1558002038-1055907dc28e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smart Hub" class="w-full h-36 object-cover" />
+        <div class="p-4">
+          <div class="flex justify-between mb-3">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$11.86</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Time Left</div>
+              <div class="text-xl font-bold text-black">01:24:18</div>
+            </div>
+          </div>
+          <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Place Bid</a>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="p-4 pb-0">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs text-green-500 bg-green-50 px-2 py-1 rounded-full">WELLNESS</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Smart Fitness Tracker</h3>
+            </div>
+            <div class="bg-purple-100 text-accent text-xs px-2 py-1 rounded-full">76 bids</div>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1575311373937-040b8e1fd6b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fitness Tracker" class="w-full h-36 object-cover" />
+        <div class="p-4">
+          <div class="flex justify-between mb-3">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$8.75</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Time Left</div>
+              <div class="text-xl font-bold text-black">03:45:01</div>
+            </div>
+          </div>
+          <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Place Bid</a>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="p-4 pb-0">
+          <div class="flex justify-between items-start">
+            <div>
+              <span class="text-xs text-orange-500 bg-orange-50 px-2 py-1 rounded-full">AUDIO</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Wireless Earbuds Pro</h3>
+            </div>
+            <div class="bg-purple-100 text-accent text-xs px-2 py-1 rounded-full">104 bids</div>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wireless Earbuds" class="w-full h-36 object-cover" />
+        <div class="p-4">
+          <div class="flex justify-between mb-3">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$14.32</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Time Left</div>
+              <div class="text-xl font-bold text-black">00:58:42</div>
+            </div>
+          </div>
+          <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Place Bid</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-10">
+    <div class="container mx-auto px-8">
+      <div class="grid grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Launchbid</h3>
+          <p class="text-gray-400 text-sm">Connecting startups with early supporters through innovative funding mechanisms.</p>
+          <div class="flex mt-4 space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">facebook</i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">public</i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">insert_link</i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Explore</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="auctions.html" class="hover:text-white">Auctions</a></li>
+            <li><a href="equity.html" class="hover:text-white">Equity Offerings</a></li>
+            <li><a href="loans.html" class="hover:text-white">Microloans</a></li>
+            <li><a href="#" class="hover:text-white">How It Works</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Company</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">About Us</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Legal</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-white">Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Launchbid. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>

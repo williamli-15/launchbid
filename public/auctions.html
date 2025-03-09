@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auctions - Launchbid</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#10B981',
+            accent: '#8B5CF6',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white px-8 py-4 border-b border-gray-100 flex justify-between items-center">
+    <div class="flex items-center">
+      <a href="index.html" class="text-2xl font-bold text-primary mr-2">Launchbid</a>
+      <div class="bg-blue-100 text-primary text-xs px-2 py-1 rounded-full">BETA</div>
+    </div>
+    <nav class="hidden md:flex space-x-6">
+      <a href="auctions.html" class="text-black font-medium">Auctions</a>
+      <a href="equity.html" class="text-black opacity-70 hover:opacity-100">Equity</a>
+      <a href="loans.html" class="text-black opacity-70 hover:opacity-100">Loans</a>
+      <a href="dashboard.html" class="text-black opacity-70 hover:opacity-100">Dashboard</a>
+    </nav>
+    <div class="flex items-center space-x-4">
+      <div class="relative">
+        <i class="material-icons" style="font-size: 20px;">shopping_bag</i>
+        <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">2</span>
+      </div>
+      <div class="relative">
+        <i class="material-icons" style="font-size: 20px;">notifications</i>
+        <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">5</span>
+      </div>
+      <div class="flex items-center">
+        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Profile" class="w-8 h-8 rounded-full" />
+        <span class="ml-2 text-black">Alex</span>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Auction Header -->
+  <section class="px-8 py-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+    <h1 class="text-3xl font-bold mb-2">Live Auctions</h1>
+    <p class="opacity-80">Bid on exclusive products from innovative startups</p>
+    <div class="flex space-x-4 mt-6">
+      <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg px-4 py-2 flex items-center">
+        <i class="material-icons mr-2">schedule</i>
+        <div>
+          <div class="text-xs opacity-80">Next auction ends in</div>
+          <div class="font-semibold">00:58:42</div>
+        </div>
+      </div>
+      <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg px-4 py-2 flex items-center">
+        <i class="material-icons mr-2">help_outline</i>
+        <div>
+          <div class="text-xs opacity-80">Your active bids</div>
+          <div class="font-semibold">3 auctions</div>
+        </div>
+      </div>
+      <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg px-4 py-2 flex items-center">
+        <i class="material-icons mr-2">attach_money</i>
+        <div>
+          <div class="text-xs opacity-80">Your bid balance</div>
+          <div class="font-semibold">$28.50</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Filters -->
+  <section class="px-8 py-4 border-b border-gray-100 flex justify-between bg-white">
+    <div class="flex space-x-2">
+      <button class="px-3 py-1 bg-primary text-white rounded-full text-sm font-medium">All</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Technology</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Audio</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Wellness</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Home</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Software</button>
+    </div>
+    <div class="flex items-center">
+      <div class="relative mr-4">
+        <i class="material-icons absolute left-3 top-2.5 text-gray-400" style="font-size: 16px;">search</i>
+        <input type="text" placeholder="Search auctions..." class="pl-10 pr-4 py-2 bg-gray-100 rounded-full text-sm w-64 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50">
+      </div>
+      <div class="flex items-center text-black opacity-70">
+        <span class="mr-2">Sort by:</span>
+        <select class="bg-transparent focus:outline-none text-sm">
+          <option>Ending Soon</option>
+          <option>Newly Listed</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Auction Grid -->
+  <section class="px-8 py-6 bg-white">
+    <div class="grid grid-cols-3 gap-6">
+      <!-- Auction Item 1 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 relative">
+        <div class="absolute top-4 right-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full flex items-center">
+          <i class="material-icons mr-1" style="font-size: 12px;">schedule</i>
+          <span>Ending Soon</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wireless Earbuds" class="w-full h-40 object-cover" />
+        <div class="p-4">
+          <span class="text-xs text-orange-500 bg-orange-50 px-2 py-1 rounded-full">AUDIO</span>
+          <h3 class="text-lg font-semibold mt-2 text-black">Wireless Earbuds Pro</h3>
+          <p class="text-black opacity-70 text-sm mt-1 mb-3">Premium noise-canceling earbuds with spatial audio.</p>
+          <div class="flex justify-between items-end">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$14.32</div>
+              <div class="text-black opacity-60 text-xs mt-1">Retail: $179.99</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1 text-right">Time Left</div>
+              <div class="text-xl font-bold text-black text-right">00:58:42</div>
+              <div class="text-black opacity-60 text-xs mt-1 text-right">104 bids</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Bid $14.33</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Auction Item 2 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 relative">
+        <div class="absolute top-4 right-4 bg-blue-500 text-white text-xs px-2 py-1 rounded-full flex items-center">
+          <i class="material-icons mr-1" style="font-size: 12px;">favorite</i>
+          <span>Popular</span>
+        </div>
+        <img src="https://images.unsplash.com/photo-1558002038-1055907dc28e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smart Home Security Hub" class="w-full h-40 object-cover" />
+        <div class="p-4">
+          <span class="text-xs text-primary bg-blue-50 px-2 py-1 rounded-full">TECH</span>
+          <h3 class="text-lg font-semibold mt-2 text-black">Smart Home Security Hub</h3>
+          <p class="text-black opacity-70 text-sm mt-1 mb-3">All-in-one security system with AI detection.</p>
+          <div class="flex justify-between items-end">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$11.86</div>
+              <div class="text-black opacity-60 text-xs mt-1">Retail: $249.99</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1 text-right">Time Left</div>
+              <div class="text-xl font-bold text-black text-right">01:24:18</div>
+              <div class="text-black opacity-60 text-xs mt-1 text-right">92 bids</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Bid $11.87</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Auction Item 3 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <img src="https://images.unsplash.com/photo-1575311373937-040b8e1fd6b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smart Fitness Tracker" class="w-full h-40 object-cover" />
+        <div class="p-4">
+          <span class="text-xs text-green-500 bg-green-50 px-2 py-1 rounded-full">WELLNESS</span>
+          <h3 class="text-lg font-semibold mt-2 text-black">Smart Fitness Tracker</h3>
+          <p class="text-black opacity-70 text-sm mt-1 mb-3">Track health metrics with advanced sensors.</p>
+          <div class="flex justify-between items-end">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$8.75</div>
+              <div class="text-black opacity-60 text-xs mt-1">Retail: $149.99</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1 text-right">Time Left</div>
+              <div class="text-xl font-bold text-black text-right">03:45:01</div>
+              <div class="text-black opacity-60 text-xs mt-1 text-right">76 bids</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Bid $8.76</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Auction Item 4 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <img src="https://images.unsplash.com/photo-1517231925375-bf2cb42917a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Smart Coffee Maker" class="w-full h-40 object-cover" />
+        <div class="p-4">
+          <span class="text-xs text-yellow-500 bg-yellow-50 px-2 py-1 rounded-full">HOME</span>
+          <h3 class="text-lg font-semibold mt-2 text-black">Smart Coffee Maker</h3>
+          <p class="text-black opacity-70 text-sm mt-1 mb-3">App-controlled brewing with customizable profiles.</p>
+          <div class="flex justify-between items-end">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$5.42</div>
+              <div class="text-black opacity-60 text-xs mt-1">Retail: $129.99</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1 text-right">Time Left</div>
+              <div class="text-xl font-bold text-black text-right">05:12:37</div>
+              <div class="text-black opacity-60 text-xs mt-1 text-right">54 bids</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Bid $5.43</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Auction Item 5 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Productivity Software" class="w-full h-40 object-cover" />
+        <div class="p-4">
+          <span class="text-xs text-purple-500 bg-purple-50 px-2 py-1 rounded-full">SOFTWARE</span>
+          <h3 class="text-lg font-semibold mt-2 text-black">AI Productivity Suite</h3>
+          <p class="text-black opacity-70 text-sm mt-1 mb-3">AI-powered tools to boost your productivity.</p>
+          <div class="flex justify-between items-end">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$7.21</div>
+              <div class="text-black opacity-60 text-xs mt-1">Retail: $99.99/yr</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1 text-right">Time Left</div>
+              <div class="text-xl font-bold text-black text-right">07:34:18</div>
+              <div class="text-black opacity-60 text-xs mt-1 text-right">35 bids</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Bid $7.22</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Auction Item 6 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <img src="https://images.unsplash.com/photo-1547949003-9792a18a2601?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Portable Speaker" class="w-full h-40 object-cover" />
+        <div class="p-4">
+          <span class="text-xs text-orange-500 bg-orange-50 px-2 py-1 rounded-full">AUDIO</span>
+          <h3 class="text-lg font-semibold mt-2 text-black">Portable Bluetooth Speaker</h3>
+          <p class="text-black opacity-70 text-sm mt-1 mb-3">Waterproof speaker with 360° sound technology.</p>
+          <div class="flex justify-between items-end">
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1">Current Price</div>
+              <div class="text-xl font-bold text-black">$9.64</div>
+              <div class="text-black opacity-60 text-xs mt-1">Retail: $159.99</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs mb-1 text-right">Time Left</div>
+              <div class="text-xl font-bold text-black text-right">04:23:59</div>
+              <div class="text-black opacity-60 text-xs mt-1 text-right">48 bids</div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <a href="auction-detail.html" class="block w-full py-2 bg-primary rounded-full text-white font-medium text-sm text-center">Bid $9.65</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pagination -->
+  <section class="px-8 py-6 flex justify-center bg-white">
+    <div class="flex items-center space-x-2">
+      <button class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200">
+        <i class="material-icons" style="font-size: 16px;">chevron_left</i>
+      </button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white">1</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">2</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">3</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">4</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">5</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200">
+        <i class="material-icons" style="font-size: 16px;">chevron_right</i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-10">
+    <div class="container mx-auto px-8">
+      <div class="grid grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Launchbid</h3>
+          <p class="text-gray-400 text-sm">Connecting startups with early supporters through innovative funding mechanisms.</p>
+          <div class="flex mt-4 space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">facebook</i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">public</i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">insert_link</i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Explore</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="auctions.html" class="hover:text-white">Auctions</a></li>
+            <li><a href="equity.html" class="hover:text-white">Equity Offerings</a></li>
+            <li><a href="loans.html" class="hover:text-white">Microloans</a></li>
+            <li><a href="#" class="hover:text-white">How It Works</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Company</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">About Us</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Legal</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-white">Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Launchbid. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/auctions.js"></script>
+</body>
+</html>

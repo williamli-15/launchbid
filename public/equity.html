@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microequity Offerings - Launchbid</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#10B981',
+            accent: '#8B5CF6',
+            dark: '#1E293B',
+            light: '#F8FAFC'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <!-- Inter Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="bg-white px-8 py-4 border-b border-gray-100 flex justify-between items-center">
+    <div class="flex items-center">
+      <a href="index.html" class="text-2xl font-bold text-primary mr-2">Launchbid</a>
+      <div class="bg-blue-100 text-primary text-xs px-2 py-1 rounded-full">BETA</div>
+    </div>
+    <nav class="hidden md:flex space-x-6">
+      <a href="auctions.html" class="text-black opacity-70 hover:opacity-100">Auctions</a>
+      <a href="equity.html" class="text-black font-medium">Equity</a>
+      <a href="loans.html" class="text-black opacity-70 hover:opacity-100">Loans</a>
+      <a href="dashboard.html" class="text-black opacity-70 hover:opacity-100">Dashboard</a>
+    </nav>
+    <div class="flex items-center space-x-4">
+      <div class="relative">
+        <i class="material-icons" style="font-size: 20px;">shopping_bag</i>
+        <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">2</span>
+      </div>
+      <div class="relative">
+        <i class="material-icons" style="font-size: 20px;">notifications</i>
+        <span class="absolute -top-1 -right-1 bg-primary text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">5</span>
+      </div>
+      <div class="flex items-center">
+        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Profile" class="w-8 h-8 rounded-full" />
+        <span class="ml-2 text-black">Alex</span>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Equity Header -->
+  <section class="px-8 py-6 bg-gradient-to-r from-green-500 to-emerald-500 text-white">
+    <h1 class="text-3xl font-bold mb-2">Microequity Offerings</h1>
+    <p class="opacity-80">Invest in promising startups with as little as $10</p>
+    <div class="flex space-x-4 mt-6">
+      <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg px-4 py-2 flex items-center">
+        <i class="material-icons mr-2">check_circle</i>
+        <div>
+          <div class="text-xs opacity-80">Companies funded</div>
+          <div class="font-semibold">127 startups</div>
+        </div>
+      </div>
+      <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg px-4 py-2 flex items-center">
+        <i class="material-icons mr-2">account_balance</i>
+        <div>
+          <div class="text-xs opacity-80">Total invested</div>
+          <div class="font-semibold">$1.45M</div>
+        </div>
+      </div>
+      <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg px-4 py-2 flex items-center">
+        <i class="material-icons mr-2">groups</i>
+        <div>
+          <div class="text-xs opacity-80">Active investors</div>
+          <div class="font-semibold">5,280+</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Filters -->
+  <section class="px-8 py-4 border-b border-gray-100 flex justify-between bg-white">
+    <div class="flex space-x-2">
+      <button class="px-3 py-1 bg-green-500 text-white rounded-full text-sm font-medium">All</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Seed Stage</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Series A</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Tech</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Consumer</button>
+      <button class="px-3 py-1 bg-gray-100 text-black rounded-full text-sm font-medium">Health</button>
+    </div>
+    <div class="flex items-center">
+      <div class="relative mr-4">
+        <i class="material-icons absolute left-3 top-2.5 text-gray-400" style="font-size: 16px;">search</i>
+        <input type="text" placeholder="Search startups..." class="pl-10 pr-4 py-2 bg-gray-100 rounded-full text-sm w-64 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+      </div>
+      <div class="flex items-center text-black opacity-70">
+        <span class="mr-2">Sort by:</span>
+        <select class="bg-transparent focus:outline-none text-sm">
+          <option>Trending</option>
+          <option>Newest</option>
+          <option>Funding Goal %</option>
+          <option>Minimum Investment</option>
+        </select>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Equity Offerings -->
+  <section class="px-8 py-6 bg-white">
+    <div class="grid grid-cols-3 gap-6">
+      <!-- Offering 1 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="SoundCore Tech" class="w-full h-40 object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Company Logo" class="w-10 h-10 rounded-full border-2 border-white object-cover" />
+              <div class="ml-2 text-white">
+                <div class="font-medium">SoundCore Tech</div>
+                <div class="text-xs opacity-80">San Francisco, CA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs text-orange-500 bg-orange-50 px-2 py-1 rounded-full">AUDIO</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Revolutionary Audio Technology</h3>
+            </div>
+            <div class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">Seed Stage</div>
+          </div>
+          <p class="text-black opacity-70 text-sm mb-4">Developing next-gen audio hardware with proprietary spatial audio algorithms and sustainable manufacturing.</p>
+          
+          <div class="mb-4">
+            <div class="flex justify-between text-xs text-black opacity-70 mb-1">
+              <span>Raised: $425,000</span>
+              <span>Goal: $500,000</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-green-600 font-medium">85%</span>
+              <span class="text-black opacity-70">23 days left</span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-end mb-4">
+            <div>
+              <div class="text-black opacity-60 text-xs">Valuation</div>
+              <div class="text-black font-bold">$4.2M</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Min Investment</div>
+              <div class="text-black font-bold">$100</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Investors</div>
+              <div class="text-black font-bold">127</div>
+            </div>
+          </div>
+          
+          <a href="equity-detail.html" class="block w-full py-2 bg-green-500 rounded-full text-white font-medium text-sm text-center">View Opportunity</a>
+        </div>
+      </div>
+      
+      <!-- Offering 2 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="HealthPulse" class="w-full h-40 object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Company Logo" class="w-10 h-10 rounded-full border-2 border-white object-cover" />
+              <div class="ml-2 text-white">
+                <div class="font-medium">HealthPulse</div>
+                <div class="text-xs opacity-80">Boston, MA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">HEALTH</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">AI-Powered Health Diagnostics</h3>
+            </div>
+            <div class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full">Series A</div>
+          </div>
+          <p class="text-black opacity-70 text-sm mb-4">Using AI to revolutionize early disease detection through non-invasive monitoring and diagnostics.</p>
+          
+          <div class="mb-4">
+            <div class="flex justify-between text-xs text-black opacity-70 mb-1">
+              <span>Raised: $1.2M</span>
+              <span>Goal: $1.5M</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 80%"></div>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-green-600 font-medium">80%</span>
+              <span class="text-black opacity-70">15 days left</span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-end mb-4">
+            <div>
+              <div class="text-black opacity-60 text-xs">Valuation</div>
+              <div class="text-black font-bold">$12M</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Min Investment</div>
+              <div class="text-black font-bold">$250</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Investors</div>
+              <div class="text-black font-bold">312</div>
+            </div>
+          </div>
+          
+          <a href="equity-detail.html" class="block w-full py-2 bg-green-500 rounded-full text-white font-medium text-sm text-center">View Opportunity</a>
+        </div>
+      </div>
+      
+      <!-- Offering 3 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1605026530260-8d6e941ebed5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="GreenHarvest" class="w-full h-40 object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Company Logo" class="w-10 h-10 rounded-full border-2 border-white object-cover" />
+              <div class="ml-2 text-white">
+                <div class="font-medium">GreenHarvest</div>
+                <div class="text-xs opacity-80">Austin, TX</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs text-green-700 bg-green-50 px-2 py-1 rounded-full">AGRICULTURE</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Vertical Farming Solutions</h3>
+            </div>
+            <div class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">Seed Stage</div>
+          </div>
+          <p class="text-black opacity-70 text-sm mb-4">Developing modular vertical farming systems for urban environments with 90% less water usage.</p>
+          
+          <div class="mb-4">
+            <div class="flex justify-between text-xs text-black opacity-70 mb-1">
+              <span>Raised: $215,000</span>
+              <span>Goal: $350,000</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 61%"></div>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-green-600 font-medium">61%</span>
+              <span class="text-black opacity-70">30 days left</span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-end mb-4">
+            <div>
+              <div class="text-black opacity-60 text-xs">Valuation</div>
+              <div class="text-black font-bold">$3.5M</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Min Investment</div>
+              <div class="text-black font-bold">$50</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Investors</div>
+              <div class="text-black font-bold">187</div>
+            </div>
+          </div>
+          
+          <a href="equity-detail.html" class="block w-full py-2 bg-green-500 rounded-full text-white font-medium text-sm text-center">View Opportunity</a>
+        </div>
+      </div>
+      
+      <!-- Offering 4 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Quantum" class="w-full h-40 object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Company Logo" class="w-10 h-10 rounded-full border-2 border-white object-cover" />
+              <div class="ml-2 text-white">
+                <div class="font-medium">Quantum AI</div>
+                <div class="text-xs opacity-80">Seattle, WA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">AI</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Enterprise AI Solutions</h3>
+            </div>
+            <div class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full">Series A</div>
+          </div>
+          <p class="text-black opacity-70 text-sm mb-4">Building advanced AI systems that help enterprises automate complex decision-making processes.</p>
+          
+          <div class="mb-4">
+            <div class="flex justify-between text-xs text-black opacity-70 mb-1">
+              <span>Raised: $980,000</span>
+              <span>Goal: $1M</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 98%"></div>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-green-600 font-medium">98%</span>
+              <span class="text-black opacity-70">2 days left</span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-end mb-4">
+            <div>
+              <div class="text-black opacity-60 text-xs">Valuation</div>
+              <div class="text-black font-bold">$8M</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Min Investment</div>
+              <div class="text-black font-bold">$200</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Investors</div>
+              <div class="text-black font-bold">412</div>
+            </div>
+          </div>
+          
+          <a href="equity-detail.html" class="block w-full py-2 bg-green-500 rounded-full text-white font-medium text-sm text-center">View Opportunity</a>
+        </div>
+      </div>
+      
+      <!-- Offering 5 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="EcoPackage" class="w-full h-40 object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Company Logo" class="w-10 h-10 rounded-full border-2 border-white object-cover" />
+              <div class="ml-2 text-white">
+                <div class="font-medium">EcoPackage</div>
+                <div class="text-xs opacity-80">Portland, OR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs text-green-700 bg-green-50 px-2 py-1 rounded-full">SUSTAINABILITY</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Biodegradable Packaging</h3>
+            </div>
+            <div class="bg-green-100 text-green-600 text-xs px-2 py-1 rounded-full">Seed Stage</div>
+          </div>
+          <p class="text-black opacity-70 text-sm mb-4">Creating fully biodegradable packaging solutions from agricultural waste for consumer products.</p>
+          
+          <div class="mb-4">
+            <div class="flex justify-between text-xs text-black opacity-70 mb-1">
+              <span>Raised: $175,000</span>
+              <span>Goal: $250,000</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-green-600 font-medium">70%</span>
+              <span class="text-black opacity-70">18 days left</span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-end mb-4">
+            <div>
+              <div class="text-black opacity-60 text-xs">Valuation</div>
+              <div class="text-black font-bold">$2.8M</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Min Investment</div>
+              <div class="text-black font-bold">$25</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Investors</div>
+              <div class="text-black font-bold">263</div>
+            </div>
+          </div>
+          
+          <a href="equity-detail.html" class="block w-full py-2 bg-green-500 rounded-full text-white font-medium text-sm text-center">View Opportunity</a>
+        </div>
+      </div>
+      
+      <!-- Offering 6 -->
+      <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100">
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Finly" class="w-full h-40 object-cover" />
+          <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+            <div class="flex items-center">
+              <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-1.2.1&auto=format&fit=crop&w=120&q=80" alt="Company Logo" class="w-10 h-10 rounded-full border-2 border-white object-cover" />
+              <div class="ml-2 text-white">
+                <div class="font-medium">Finly</div>
+                <div class="text-xs opacity-80">New York, NY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="p-4">
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <span class="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full">FINTECH</span>
+              <h3 class="text-lg font-semibold mt-2 text-black">Automated Financial Planning</h3>
+            </div>
+            <div class="bg-blue-100 text-blue-600 text-xs px-2 py-1 rounded-full">Series A</div>
+          </div>
+          <p class="text-black opacity-70 text-sm mb-4">AI-powered financial planning platform that helps users optimize investments and reach financial goals.</p>
+          
+          <div class="mb-4">
+            <div class="flex justify-between text-xs text-black opacity-70 mb-1">
+              <span>Raised: $780,000</span>
+              <span>Goal: $1M</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2 mb-1">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 78%"></div>
+            </div>
+            <div class="flex justify-between text-xs">
+              <span class="text-green-600 font-medium">78%</span>
+              <span class="text-black opacity-70">12 days left</span>
+            </div>
+          </div>
+          
+          <div class="flex justify-between items-end mb-4">
+            <div>
+              <div class="text-black opacity-60 text-xs">Valuation</div>
+              <div class="text-black font-bold">$9.5M</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Min Investment</div>
+              <div class="text-black font-bold">$100</div>
+            </div>
+            <div>
+              <div class="text-black opacity-60 text-xs">Investors</div>
+              <div class="text-black font-bold">375</div>
+            </div>
+          </div>
+          
+          <a href="equity-detail.html" class="block w-full py-2 bg-green-500 rounded-full text-white font-medium text-sm text-center">View Opportunity</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pagination -->
+  <section class="px-8 py-6 flex justify-center bg-white">
+    <div class="flex items-center space-x-2">
+      <button class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200">
+        <i class="material-icons" style="font-size: 16px;">chevron_left</i>
+      </button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full bg-green-500 text-white">1</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">2</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">3</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">4</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100">5</button>
+      <button class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-200">
+        <i class="material-icons" style="font-size: 16px;">chevron_right</i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-10">
+    <div class="container mx-auto px-8">
+      <div class="grid grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Launchbid</h3>
+          <p class="text-gray-400 text-sm">Connecting startups with early supporters through innovative funding mechanisms.</p>
+          <div class="flex mt-4 space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">facebook</i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">public</i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+              <i class="material-icons">insert_link</i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Explore</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="auctions.html" class="hover:text-white">Auctions</a></li>
+            <li><a href="equity.html" class="hover:text-white">Equity Offerings</a></li>
+            <li><a href="loans.html" class="hover:text-white">Microloans</a></li>
+            <li><a href="#" class="hover:text-white">How It Works</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Company</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">About Us</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+            <li><a href="#" class="hover:text-white">Blog</a></li>
+            <li><a href="#" class="hover:text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-medium mb-4">Legal</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-white">Terms of Service</a></li>
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+            <li><a href="#" class="hover:text-white">Cookie Policy</a></li>
+            <li><a href="#" class="hover:text-white">Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
+        <p>&copy; 2025 Launchbid. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/main.js"></script>
+  <script src="js/equity.js"></script>
+</body>
+</html>
