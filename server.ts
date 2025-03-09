@@ -1,4 +1,3 @@
-// server.ts
 import express, { Request, Response, RequestHandler } from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -22,8 +21,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // In-memory auction state (for demo purposes)
-// Initialize current bid to 5.00 USDT and a bid counter starting at 1 (the initial bid).
-let currentBid = 5.00;
+let currentBid = 5.00; // initial bid in USDT
 let bidCount = 1;
 
 const placeBidHandler: RequestHandler = async (req: Request, res: Response): Promise<void> => {
@@ -33,22 +31,21 @@ const placeBidHandler: RequestHandler = async (req: Request, res: Response): Pro
       res.status(400).json({ success: false, error: 'Missing required bid data' });
       return;
     }
-
+    
     // Increment the bid by 0.10 USDT.
     const increment = 0.10;
     currentBid += increment;
     bidCount++;
 
-    // Broadcast new bid data.
+    // Broadcast new bid data to all connected clients.
     io.emit('newBid', { newBidPrice: currentBid, txHash, bidderWallet, bidCount });
-
+    
     res.json({ success: true, newBidPrice: currentBid, txHash, bidCount });
   } catch (error: any) {
     console.error('Error processing bid:', error);
     res.status(500).json({ success: false, error: error.message || error });
   }
 };
-
 
 app.post('/api/placeBid', placeBidHandler);
 

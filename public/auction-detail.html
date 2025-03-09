@@ -42,6 +42,14 @@
     .bid-entry {
       transition: opacity 0.5s ease-in-out;
     }
+    /* Winner banner animation */
+    .winner-banner {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 
@@ -86,6 +94,11 @@
       Reselect Wallet
     </button>
     <span id="walletAddressDisplay" class="text-black font-medium"></span>
+  </div>
+
+  <!-- Auction Timer Section -->
+  <div class="p-4 bg-gray-50 rounded-xl my-4 text-center">
+    <div id="timerDisplay" class="text-4xl font-bold text-red-500">Time Remaining: 30s</div>
   </div>
 
   <!-- Main Auction Content -->
@@ -154,7 +167,6 @@
               <!-- Display bid in USDT and its ETH equivalent dynamically -->
               <div id="currentBid" class="text-2xl font-bold text-black">$5.00 USDT / 0.00250 ETH</div>
             </div>
-            <div class="text-right text-black opacity-60 text-xs mt-1">Initial bid</div>
           </div>
 
           <!-- Place Bid Section (Auto-increment by 0.10 USDT per click) -->
@@ -334,29 +346,24 @@
   <!-- Timer Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const hours = document.querySelector('.flex-1:nth-child(1) .text-2xl');
-      const minutes = document.querySelector('.flex-1:nth-child(2) .text-2xl');
-      const seconds = document.querySelector('.flex-1:nth-child(3) .text-2xl');
-      let hoursValue = 0, minutesValue = 58, secondsValue = 42;
-      const timerId = setInterval(() => {
-        secondsValue--;
-        if (secondsValue < 0) {
-          secondsValue = 59;
-          minutesValue--;
-          if (minutesValue < 0) {
-            minutesValue = 59;
-            hoursValue--;
-            if (hoursValue < 0) {
-              hoursValue = 0; minutesValue = 0; secondsValue = 0;
-              alert('This auction has ended!');
-              clearInterval(timerId);
-            }
-          }
+      const timerDisplay = document.getElementById('timerDisplay');
+      let timeRemaining = 30; // 30 seconds
+      const timerInterval = setInterval(() => {
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          // When time is up, announce the auction has ended and display the winner.
+          let winner = window.lastBidder || "No bids";
+          timerDisplay.innerHTML = `<div class="winner-banner text-4xl font-bold text-green-600">Auction Ended!</div><div class="text-2xl text-blue-600">Winner: ${winner}</div>`;
+        } else {
+          timerDisplay.textContent = `Time Remaining: ${timeRemaining}s`;
+          timeRemaining--;
         }
-        hours.textContent = hoursValue.toString().padStart(2, '0');
-        minutes.textContent = minutesValue.toString().padStart(2, '0');
-        seconds.textContent = secondsValue.toString().padStart(2, '0');
       }, 1000);
+
+      // Expose a function to add extra time when a bid is placed.
+      window.addExtraTime = function (seconds) {
+        timeRemaining += seconds;
+      };
     });
   </script>
 
@@ -385,10 +392,13 @@
         return;
       }
       // Calculate the new bid amount based on the server's current bid.
-      // Note: currentBid is maintained globally and updated by Socket.IO events.
-      let newBid = currentBid + 0.10; // New bid in USDT (e.g., 5.00 -> 5.10)
+      let newBid = currentBid + 0.10; // new bid in USDT
+      // Update the local next bid preview on the button.
+      let nextBid = (newBid + 0.10).toFixed(2);
+      document.getElementById('placeBidBtn').innerText = `Place Bid (will bid $${nextBid})`;
+
       // Calculate the ETH equivalent for the full new bid amount.
-      let bidFeeEth = (newBid * 0.0005).toFixed(6); // e.g., 5.10 USDT * 0.0005 = 0.00255 ETH
+      let bidFeeEth = (newBid * 0.0005).toFixed(6);
 
       const companyWallet = "0x4b19581c2bA3e781f834b25C11D81A590AfACEA4"; // Company wallet
       try {
@@ -402,12 +412,12 @@
         const transactionResponse = await signer.sendTransaction(tx);
         console.log("Transaction sent:", transactionResponse.hash);
         alert("Bid placed! Transaction hash: " + transactionResponse.hash);
-        // Notify backend that a bid has been placed.
+        // Notify backend of the bid.
         await fetch('/api/placeBid', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            bidAmount: 0.10,  // Backend adds a fixed increment of 0.10 USDT.
+            bidAmount: 0.10,  // fixed increment for the auction
             bidderWallet: window.currentWallet,
             txHash: transactionResponse.hash
           })
@@ -420,6 +430,7 @@
     document.getElementById('placeBidBtn').addEventListener('click', placeBid);
   </script>
 
+  <!-- Socket.IO for Real-Time Bid Updates and Dynamic Bid History -->
   <script>
     const socket = io();
     // Function to update the current bid display (both USDT and ETH equivalent)
@@ -454,7 +465,7 @@
 
     socket.on('newBid', function (data) {
       console.log('New bid:', data);
-      // The server sends the updated bid value in USDT.
+      // data.newBidPrice is the updated bid value (in USDT) from the server.
       currentBid = data.newBidPrice;
       bidCounter = data.bidCount;
       updateCurrentBidDisplay(currentBid);
@@ -466,6 +477,12 @@
       const now = new Date();
       const timeString = now.getHours() + ":" + now.getMinutes().toString().padStart(2, '0');
       appendBidHistory({ bidderWallet: data.bidderWallet || "Anonymous", newBid: currentBid, time: timeString });
+      // Also, update the timer by adding 5 seconds each time a bid is received.
+      if (typeof window.addExtraTime === "function") {
+        window.addExtraTime(5);
+      }
+      // Store the last bidder for the winner announcement later.
+      window.lastBidder = data.bidderWallet;
     });
   </script>
 </body>
