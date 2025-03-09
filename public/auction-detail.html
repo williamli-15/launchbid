@@ -407,7 +407,7 @@
         alert("Bid placed! Transaction hash: " + transactionResponse.hash);
 
         // Notify backend of the bid and auto-increment the bid by 0.10 USDT
-        await fetch('http://localhost:3000/api/placeBid', {
+        await fetch('/api/placeBid', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -477,7 +477,7 @@
 
   <!-- Socket.IO for Real-Time Bid Updates and Dynamic Bid History -->
   <script>
-    const socket = io('http://localhost:3000');
+    const socket = io();
 
     // Function to update the current bid display (both USDT and ETH equivalent)
     function updateCurrentBidDisplay(usdt) {
