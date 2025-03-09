@@ -28,27 +28,27 @@ let bidCount = 1;
 
 const placeBidHandler: RequestHandler = async (req: Request, res: Response): Promise<void> => {
   try {
-    // We no longer take bidAmount from the client; each bid always increments by 0.10 USDT.
     const { bidderWallet, txHash } = req.body;
     if (!bidderWallet || !txHash) {
       res.status(400).json({ success: false, error: 'Missing required bid data' });
       return;
     }
-    
-    // Auto-increment the bid by 0.10 USDT.
+
+    // Increment the bid by 0.10 USDT.
     const increment = 0.10;
     currentBid += increment;
     bidCount++;
 
-    // Broadcast the new bid data to all connected clients
+    // Broadcast new bid data.
     io.emit('newBid', { newBidPrice: currentBid, txHash, bidderWallet, bidCount });
-    
+
     res.json({ success: true, newBidPrice: currentBid, txHash, bidCount });
   } catch (error: any) {
     console.error('Error processing bid:', error);
     res.status(500).json({ success: false, error: error.message || error });
   }
 };
+
 
 app.post('/api/placeBid', placeBidHandler);
 
