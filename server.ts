@@ -38,7 +38,7 @@ interface AuctionState {
 const auction: AuctionState = {
   currentBid: 5.00, // initial bid in USDT
   bidCount: 1,
-  timeRemaining: 30, // universal timer in seconds
+  timeRemaining: 300, // universal timer in seconds
   lastBidder: null,
   isActive: true
 };
